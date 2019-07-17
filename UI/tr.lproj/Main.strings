@@ -1,0 +1,99 @@
+
+/* Class = "UIButton"; normalTitle = "English"; ObjectID = "0jL-Zs-gji"; */
+"0jL-Zs-gji.normalTitle" = "English";
+
+/* Class = "UIButton"; normalTitle = "Contact Us"; ObjectID = "2Ar-Cp-mjP"; */
+"2Ar-Cp-mjP.normalTitle" = "Contact Us";
+
+/* Class = "UILabel"; text = "Password Recovery"; ObjectID = "2pt-YJ-J81"; */
+"2pt-YJ-J81.text" = "Password Recovery";
+
+/* Class = "UIButton"; normalTitle = "русский"; ObjectID = "6aF-qg-PEv"; */
+"6aF-qg-PEv.normalTitle" = "русский";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "AO2-nl-vlY"; */
+"AO2-nl-vlY.placeholder" = "Confirm Password";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "AP2-lZ-5Km"; */
+"AP2-lZ-5Km.normalTitle" = "Sign In";
+
+/* Class = "UIButton"; normalTitle = "deutsche"; ObjectID = "BL2-eN-z5y"; */
+"BL2-eN-z5y.normalTitle" = "deutsche";
+
+/* Class = "UIButton"; normalTitle = "türkçe"; ObjectID = "Cgm-AO-MQD"; */
+"Cgm-AO-MQD.normalTitle" = "türkçe";
+
+/* Class = "UIButton"; normalTitle = "عربى"; ObjectID = "GfS-ez-xJB"; */
+"GfS-ez-xJB.normalTitle" = "عربى";
+
+/* Class = "UILabel"; text = "Having some trouble?"; ObjectID = "HhN-wh-dkk"; */
+"HhN-wh-dkk.text" = "Having some trouble?";
+
+/* Class = "UILabel"; text = "Login to your account"; ObjectID = "MzT-Yf-JJW"; */
+"MzT-Yf-JJW.text" = "Login to your account";
+
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "NEr-Cz-PHl"; */
+"NEr-Cz-PHl.placeholder" = "Email Address";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "Pf1-H7-ZWL"; */
+"Pf1-H7-ZWL.normalTitle" = "Continue";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "QVl-eE-e7u"; */
+"QVl-eE-e7u.normalTitle" = "Sign In";
+
+/* Class = "UIButton"; normalTitle = "española"; ObjectID = "TKM-75-WYJ"; */
+"TKM-75-WYJ.normalTitle" = "española";
+
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "TWY-7c-SUi"; */
+"TWY-7c-SUi.placeholder" = "Email Address";
+
+/* Class = "UILabel"; text = "Create a new account"; ObjectID = "Vaj-SY-q93"; */
+"Vaj-SY-q93.text" = "Create a new account";
+
+/* Class = "UITextField"; placeholder = "Full Name"; ObjectID = "WPy-4S-RkY"; */
+"WPy-4S-RkY.placeholder" = "Full Name";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "XWe-Q1-8Mm"; */
+"XWe-Q1-8Mm.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "Xmi-j5-R9V"; */
+"Xmi-j5-R9V.normalTitle" = "Sign In";
+
+/* Class = "UILabel"; text = "Having some trouble?"; ObjectID = "c6s-nF-aLb"; */
+"c6s-nF-aLb.text" = "Having some trouble?";
+
+/* Class = "UITextView"; text = "Enter Your registered email address."; ObjectID = "fmW-E3-Ihe"; */
+"fmW-E3-Ihe.text" = "Enter Your registered email address.";
+
+/* Class = "UIButton"; normalTitle = "Forgot password"; ObjectID = "mVb-aM-WcY"; */
+"mVb-aM-WcY.normalTitle" = "Forgot password";
+
+/* Class = "UIButton"; normalTitle = "中文"; ObjectID = "o5y-CA-XRU"; */
+"o5y-CA-XRU.normalTitle" = "中文";
+
+/* Class = "UIButton"; normalTitle = "Contact Us"; ObjectID = "qE1-T7-WiY"; */
+"qE1-T7-WiY.normalTitle" = "Contact Us";
+
+/* Class = "UIButton"; normalTitle = "فارسی"; ObjectID = "qlT-Fx-Ukf"; */
+"qlT-Fx-Ukf.normalTitle" = "فارسی";
+
+/* Class = "UITextView"; text = "We have sent a verification link to abc@xyz.com.Please click the link to verify your email address. Once you have verified your email tap below to signin to your account."; ObjectID = "sN9-ze-oio"; */
+"sN9-ze-oio.text" = "We have sent a verification link to abc@xyz.com.Please click the link to verify your email address. Once you have verified your email tap below to signin to your account.";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "sUz-XA-bvN"; */
+"sUz-XA-bvN.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Verify your email"; ObjectID = "u6W-SQ-dz9"; */
+"u6W-SQ-dz9.text" = "Verify your email";
+
+/* Class = "UIButton"; normalTitle = "हिंदी"; ObjectID = "w2L-mV-gMZ"; */
+"w2L-mV-gMZ.normalTitle" = "हिंदी";
+
+/* Class = "UIButton"; normalTitle = "SIGNUP"; ObjectID = "xBI-DW-rPB"; */
+"xBI-DW-rPB.normalTitle" = "SIGNUP";
+
+/* Class = "UILabel"; text = "Already have an account?"; ObjectID = "zOS-SC-xJo"; */
+"zOS-SC-xJo.text" = "Already have an account?";
+
+/* Class = "UIButton"; normalTitle = "Create a new account"; ObjectID = "zma-xz-fwa"; */
+"zma-xz-fwa.normalTitle" = "Create a new account";

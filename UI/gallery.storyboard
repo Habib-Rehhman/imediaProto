@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Dz9-ob-7Jl">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ImagesVC-->
+        <scene sceneID="HLg-nF-QcR">
+            <objects>
+                <collectionViewController id="Dz9-ob-7Jl" customClass="ImagesVC" customModule="iMediaProto" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gVo-6Z-tf9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LlG-pY-2Xq">
+                            <size key="itemSize" width="70" height="70"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="buF-rK-ntA" customClass="PhotoCell" customModule="iMediaProto" customModuleProvider="target">
+                                <rect key="frame" x="87.5" y="0.0" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Xv-RL-hti">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="1Xv-RL-hti" firstAttribute="top" secondItem="buF-rK-ntA" secondAttribute="top" id="PnA-lp-dkM"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Xv-RL-hti" secondAttribute="trailing" id="hiN-QV-5mG"/>
+                                    <constraint firstItem="1Xv-RL-hti" firstAttribute="leading" secondItem="buF-rK-ntA" secondAttribute="leading" id="owW-Ca-ffx"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Xv-RL-hti" secondAttribute="bottom" id="scU-Qf-JmI"/>
+                                </constraints>
+                                <size key="customSize" width="200" height="200"/>
+                                <connections>
+                                    <outlet property="imageView" destination="1Xv-RL-hti" id="2ul-H5-n5T"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Dz9-ob-7Jl" id="H62-Jr-Pza"/>
+                            <outlet property="delegate" destination="Dz9-ob-7Jl" id="sJK-AT-v3f"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="9o7-pK-quI"/>
+                    <connections>
+                        <segue destination="Tou-yP-mjQ" kind="show" identifier="zoom" id="eWa-Q2-JdD"/>
+                        <segue destination="2Wy-36-G9N" kind="show" identifier="sortedTableView" id="hlO-3M-ZOl"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HG6-cz-zOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1545" y="484"/>
+        </scene>
+        <!--Sorted TableVC-->
+        <scene sceneID="fsV-Jw-66i">
+            <objects>
+                <tableViewController id="2Wy-36-G9N" customClass="SortedTableVC" customModule="iMediaProto" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qoI-V3-5h7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WxF-kD-Q4R">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WxF-kD-Q4R" id="GkE-tZ-fZi">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2Wy-36-G9N" id="jxp-X3-xVF"/>
+                            <outlet property="delegate" destination="2Wy-36-G9N" id="R7u-FE-fR1"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="Dz9-ob-7Jl" kind="show" identifier="rowofBrandsSelectedForGallery" id="hJV-pg-zQq"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wAt-pg-S2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2454" y="430"/>
+        </scene>
+        <!--Zoomed Photo View Controller-->
+        <scene sceneID="BWF-Mm-sV7">
+            <objects>
+                <viewController storyboardIdentifier="PhotoViewController" automaticallyAdjustsScrollViewInsets="NO" id="Tou-yP-mjQ" customClass="ZoomedPhotoViewController" customModule="iMediaProto" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ySi-Sp-ZBB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tte-qg-mzd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dBF-SA-UXb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05a-jQ-JKT">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="Ve5-7J-0me">
+                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ve5-7J-0me" firstAttribute="top" secondItem="05a-jQ-JKT" secondAttribute="top" id="9bu-c6-Cid"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ve5-7J-0me" secondAttribute="bottom" id="GSq-d5-WK2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ve5-7J-0me" secondAttribute="trailing" id="KeO-xm-JL3"/>
+                                    <constraint firstItem="Ve5-7J-0me" firstAttribute="leading" secondItem="05a-jQ-JKT" secondAttribute="leading" id="mHH-FA-hNe"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Tou-yP-mjQ" id="m1u-dc-xcB"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="05a-jQ-JKT" firstAttribute="top" secondItem="ySi-Sp-ZBB" secondAttribute="bottom" id="G8C-um-sdH"/>
+                            <constraint firstItem="05a-jQ-JKT" firstAttribute="leading" secondItem="dBF-SA-UXb" secondAttribute="leading" id="RAB-ph-BOp"/>
+                            <constraint firstItem="Tte-qg-mzd" firstAttribute="top" secondItem="05a-jQ-JKT" secondAttribute="bottom" id="VQq-aI-Q6o"/>
+                            <constraint firstAttribute="trailing" secondItem="05a-jQ-JKT" secondAttribute="trailing" id="lWc-Wz-eeW"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="imageView" destination="Ve5-7J-0me" id="iCm-X3-KJI"/>
+                        <outlet property="imageViewBottomConstraint" destination="GSq-d5-WK2" id="l7o-CZ-D50"/>
+                        <outlet property="imageViewLeadingConstraint" destination="mHH-FA-hNe" id="PDj-wq-EOX"/>
+                        <outlet property="imageViewTopConstraint" destination="9bu-c6-Cid" id="keA-M1-pgv"/>
+                        <outlet property="imageViewTrailingConstraint" destination="KeO-xm-JL3" id="JPC-ae-W8h"/>
+                        <outlet property="scrollView" destination="05a-jQ-JKT" id="6UE-WY-xig"/>
+                        <segue destination="WVK-zb-bod" kind="show" identifier="associatedPicz" id="vfV-Cf-ajB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RSI-tT-12r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1545" y="1254"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uzF-pX-Zex">
+            <objects>
+                <navigationController id="IYL-XP-JUV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="88h-XG-JN0">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Dz9-ob-7Jl" kind="relationship" relationship="rootViewController" id="3kZ-B0-hOV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pf2-di-D1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747" y="485"/>
+        </scene>
+        <!--Associated Photos-->
+        <scene sceneID="LGz-hz-dwK">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="WVK-zb-bod" customClass="AssociatedPhotos" customModule="iMediaProto" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="arZ-UZ-XWP"/>
+                        <viewControllerLayoutGuide type="bottom" id="o0P-jr-fjU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4fe-qH-wUc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQ8-WD-FJd">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="JYB-3e-W8e">
+                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="JYB-3e-W8e" firstAttribute="leading" secondItem="vQ8-WD-FJd" secondAttribute="leading" id="Asn-0E-uLd"/>
+                                    <constraint firstAttribute="bottom" secondItem="JYB-3e-W8e" secondAttribute="bottom" id="RHi-fF-Wp9"/>
+                                    <constraint firstAttribute="trailing" secondItem="JYB-3e-W8e" secondAttribute="trailing" id="ZI9-7c-pYY"/>
+                                    <constraint firstItem="JYB-3e-W8e" firstAttribute="top" secondItem="vQ8-WD-FJd" secondAttribute="top" id="iGs-8I-hlk"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="WVK-zb-bod" id="gAH-jJ-xRu"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="o0P-jr-fjU" firstAttribute="top" secondItem="vQ8-WD-FJd" secondAttribute="bottom" id="AnX-bO-nf5"/>
+                            <constraint firstAttribute="trailing" secondItem="vQ8-WD-FJd" secondAttribute="trailing" id="EUX-yf-APt"/>
+                            <constraint firstItem="vQ8-WD-FJd" firstAttribute="leading" secondItem="4fe-qH-wUc" secondAttribute="leading" id="GHq-Ds-kws"/>
+                            <constraint firstItem="vQ8-WD-FJd" firstAttribute="top" secondItem="arZ-UZ-XWP" secondAttribute="bottom" id="Z30-GS-DAc"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="imageView" destination="JYB-3e-W8e" id="87R-8l-n5x"/>
+                        <outlet property="imageViewBottomConstraint" destination="RHi-fF-Wp9" id="Nes-gB-bFd"/>
+                        <outlet property="imageViewLeadingConstraint" destination="Asn-0E-uLd" id="Xr7-sw-WKv"/>
+                        <outlet property="imageViewTopConstraint" destination="iGs-8I-hlk" id="m1W-9U-9bd"/>
+                        <outlet property="imageViewTrailingConstraint" destination="ZI9-7c-pYY" id="qZv-Ac-5ec"/>
+                        <outlet property="scrollView" destination="vQ8-WD-FJd" id="cgP-SG-LdZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S0Y-q3-bVW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2417" y="1254"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="photo1" width="1024" height="768"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hJV-pg-zQq"/>
+    </inferredMetricsTieBreakers>
+</document>
