@@ -17,7 +17,14 @@ class SubLessonsVC : UITableViewController, UIDataSourceModelAssociation {
     // MARK: - Constants
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title =  "lessons".localizableString(loc: LanguageViewController.buttonName)
+        tableView.tableFooterView = UIView(frame: .zero)
         
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "background.png")
+        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
+        self.tableView.backgroundView = backgroundImage
+        //self.view.insertSubview(backgroundImage, at: 0)
     }
     private var index = 0;
     static var sublessons: [sublesson] = []
@@ -37,19 +44,10 @@ class SubLessonsVC : UITableViewController, UIDataSourceModelAssociation {
         //presentationAnimator.presentButton = sender
         present(menuViewController, animated: true, completion: nil)
     }
-    //var selectedTopic: String?
     
-    // MARK: - View controller lifecycle
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let destinationVC = segue.destination as? QuoteViewController {
-//            destinationVC.topic = selectedTopic
-//        }
-//    }
     
     
     func indexPathForElement(withModelIdentifier identifier: String, in view: UIView) -> IndexPath? {
-        // let row = lesonsViewController.lessons.//firstIndex(of: identifier) ?? 0
-       // index += 1
         return IndexPath(row: index, section: 0)
     }
     
@@ -59,18 +57,22 @@ class SubLessonsVC : UITableViewController, UIDataSourceModelAssociation {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tableView.backgroundColor = UIColor(hexString: "#A5DEFF")
+        //tableView.backgroundColor = UIColor(hexString: "#A5DEFF")
         print("count::\(SubLessonsVC.sublessons.count)")
         return SubLessonsVC.sublessons.count
 
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "lessonCell")!
-        
+        if(LanguageViewController.buttonName ==  "ar" || LanguageViewController.buttonName ==  "fa-IR"){
+            cell.textLabel?.textAlignment = .right
+        }else{
+            cell.textLabel?.textAlignment = .left
+        }
         cell.textLabel?.text = SubLessonsVC.sublessons[indexPath.row].name
-        cell.layer.cornerRadius = 5
-        cell.layer.borderWidth = CGFloat(12)
-        cell.layer.borderColor = tableView.backgroundColor?.cgColor
+//        cell.layer.cornerRadius = 30
+//        cell.layer.borderWidth = CGFloat(12)
+//        cell.layer.borderColor = tableView.backgroundColor?.cgColor
         
         return cell
     }
@@ -86,14 +88,10 @@ class SubLessonsVC : UITableViewController, UIDataSourceModelAssociation {
 
         print("Sub_lessonObject:  \(SubLessonsVC.sublessons[indexPath.row])\n size: \(SubLessonsVC.sublessons.count)")
         var s = ""
-        if(SubLessonsVC.sublessons[indexPath.row].id == "0"){
             s = networkConstants.baseURL+networkConstants.content
-            subLessonWasZero(theUrl: s,lesn: "\(lesonsViewController.lessons[indexPath.row].id)", subLsn:"\(SubLessonsVC.sublessons[indexPath.row].id)")
-            //lesn: "35",subLsn:  "0")
-        }else{
-             s = networkConstants.baseURL+networkConstants.sublessons
-           subLessonWasOne(theUrl: s, lesn: "\(lesonsViewController.lessons[indexPath.row].id)", subLsn:"\(SubLessonsVC.sublessons[indexPath.row].id)")
-        }
+        
+            subLessonWasZero(theUrl: s,lesn: "\(SubLessonsVC.sublessons[indexPath.row].id)", subLsn:"1")
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
@@ -108,7 +106,7 @@ class SubLessonsVC : UITableViewController, UIDataSourceModelAssociation {
             "sub_lesson": subLsn,
             "session":networkConstants.session
         ]
-        let sv = UIViewController.displaySpinner(onView: self.view)
+        let sv = UIViewController.displaySpinner(onView: self.tableView!)
         AF.request(urlChapter, method:.post, parameters: parametersChapter, encoding:URLEncoding.default, headers:header).responseJSON(completionHandler:{ response in
             switch response.result {
             case .success(let json):
@@ -121,13 +119,31 @@ class SubLessonsVC : UITableViewController, UIDataSourceModelAssociation {
                     if(gitData.message != nil){
                         UIViewController.removeSpinner(spinner: sv)
                         switch gitData.message!{
+                          
+                        case "session_inactive":
+                            UserDefaults.standard.set(false, forKey: "ISUSERLOGGEDIN")
+                            UserDefaults.standard.removeObject(forKey: "session")
+                            UserDefaults.standard.removeObject(forKey: "language")
+                            QuoteDeck.sharedInstance.quotes.removeAll()
+                            QuoteDeck.sharedInstance.tagSet.removeAll()
+                            self.performSegue(withIdentifier: "toAuthBoard", sender: self)
+                            break
                             
                         case "content_empty":
                             print("this sublesson contain")
                             self.showOkAlert(tit: "EmptyLessonsListTitle", msg: "EmptyLessonsListMessage")
                             break
+                            case "subscription_required":
+                            
+                                self.presentQR(completion: {b in
+                                    if(b){
+                                        self.performSegue(withIdentifier: "scanQRNow", sender: nil)
+                                    }
+                                })
+                            break
                         default:
                             print("no point in making this request")
+                            break
                         }
                         
                     }else if gitData.content == nil{
@@ -136,14 +152,17 @@ class SubLessonsVC : UITableViewController, UIDataSourceModelAssociation {
                     }
                     else{
                         print(gitData.content!)
-                        ImagesVC.jsonURLs.removeAll()
+                        ImagesVC.newStruct.removeAll()
+                        //ImagesVC.dealWithIt = []
+                        ImagesVC.picz.removeAll()
                         self.content = gitData.content!
-                         print(gitData.images!)
                         gitData.images?.forEach({u in
-                            ImagesVC.jsonURLs.append(u.image!)
+                            ImagesVC.newStruct.append(u)
                         })
                         UIViewController.removeSpinner(spinner: sv)
                         self.performSegue(withIdentifier:"showWebView", sender: nil)
+                         ImagesVC.dealWithIt = ImagesVC.newStruct
+                        ImagesVC.whoSent = "contentVC"
                     }
                     
                 } catch let err {
@@ -160,75 +179,8 @@ class SubLessonsVC : UITableViewController, UIDataSourceModelAssociation {
             
         })
         
-        
-        //  self.performSegue(withIdentifier:"showWebView", sender: nil)
     }
-        
-    
-    func subLessonWasOne(theUrl: String, lesn: String, subLsn: String){
-        
-        let urlChapter = URL(string: theUrl)!
-        let header : HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
-        let parametersChapter:Parameters = [
-            "app_id":"com.wikibolics.com",
-            "appstore_id":"com.wikibolics.com",
-            "lesson": lesn,
-            "sub_lesson": subLsn,
-            "session":networkConstants.session
-        ]
-        let sv = UIViewController.displaySpinner(onView: self.view)
-        AF.request(urlChapter, method:.post, parameters: parametersChapter, encoding:URLEncoding.default, headers:header).responseJSON(completionHandler:{ response in
-            switch response.result {
-                
-            case .success(let json):
-                print(json)
-                do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: json)
-                    let decoder = JSONDecoder()
-                    let gitData = try decoder.decode(contentStruct.self, from: jsonData)
-                    
-                    if(gitData.message != nil){
-                        UIViewController.removeSpinner(spinner: sv)
-                        switch gitData.message!{
-                            
-                        case "content_empty":
-                            print("this sublesson contain")
-                            self.showOkAlert(tit: "EmptyLessonsListTitle", msg: "EmptyLessonsListMessage")
-                            break
-                        default:
-                            print("no point in making this request")
-                        }
-                        
-                    }else if gitData.content == nil{
-                        print("Empty Respons   \(gitData)")
-                        UIViewController.removeSpinner(spinner: sv)
-                    }
-                    else{
-                        print(gitData.content!)
-                        self.content = gitData.content!
-                         print(gitData.images!)
-                        gitData.images?.forEach({u in
-                            ImagesVC.jsonURLs.append(u.image!)
-                        })
-                        UIViewController.removeSpinner(spinner: sv)
-                        self.performSegue(withIdentifier:"showWebView", sender: nil)
-                    }
-                    
-                } catch let err {
-                    print("Err", err)
-                }
-                break
-                
-            case .failure(let error):
-                UIViewController.removeSpinner(spinner: sv)
-                self.showOkAlert(tit: "NetworkAlertTitle", msg: "NetworkAlertMessage")
-                print(error.localizedDescription)
-                break
-            }
-            
-        })
-}
-        
+
     }
 
 extension SubLessonsVC: UIViewControllerTransitioningDelegate {

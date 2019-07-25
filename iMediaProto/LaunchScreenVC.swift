@@ -7,20 +7,53 @@
 //
 import UIKit
 import  Alamofire
-//import Foundation
+
 
 class LaunchScreenVC: UIViewController {
     
+    
+    @IBOutlet weak var tryBtnOutLet: UIButton!
+    @IBOutlet weak var noNetworkLabel: UILabel!
+    private var observer: NSObjectProtocol?
+    
     override func viewDidLoad() {
-       super.viewDidLoad()
-       loadChapters()
+        super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
+        
+        noNetworkLabel.isHidden = true
+        tryBtnOutLet.isHidden = true
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkAutoLogin), name: UIApplication.willEnterForegroundNotification, object: nil)
+        checkAutoLogin()
     }
     
+    @IBAction func tryAgainBtn(_ sender: Any) {
+        
+        self.noNetworkLabel.isHidden = true
+        self.tryBtnOutLet.isHidden = true
+        loadChapters()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    @objc func checkAutoLogin(){
+        
+        if UserDefaults.standard.bool(forKey: "ISUSERLOGGEDIN") == true {
+            networkConstants.session = UserDefaults.standard.string(forKey: "session")!
+            LanguageViewController.buttonName = UserDefaults.standard.string(forKey: "language")!
+            loadChapters()
+        }else{
+            self.performSegue(withIdentifier: "launchTolanguage", sender: nil)
+        }
+    }
     
     func loadChapters(){
         
         let sv = UIViewController.displaySpinner(onView: self.view)
-        let urlChapter = URL(string: networkConstants.baseURL+networkConstants.nextToLogin)!//"https://reqres.in/api/login")!
+        let urlChapter = URL(string: networkConstants.baseURL+networkConstants.nextToLogin)!
         
         let parametersChapter:Parameters = [
             "app_id":"com.wikibolics.com",
@@ -39,19 +72,32 @@ class LaunchScreenVC: UIViewController {
                     let decoder = JSONDecoder()
                     let gitData = try decoder.decode(arrayOfChapters.self, from: jsonData)
                     if(gitData.message != nil){
-                        UIViewController.removeSpinner(spinner: sv)
-                        self.showOkAlert(tit: "EmptyLessonsListMessage", msg: "EmptyLessonsListMessage")
+                        if((gitData.message?.elementsEqual("session_inactive"))!){
+                            
+                            UserDefaults.standard.set(false, forKey: "ISUSERLOGGEDIN")
+                            UserDefaults.standard.removeObject(forKey: "session")
+                            UserDefaults.standard.removeObject(forKey: "language")
+                            QuoteDeck.sharedInstance.quotes.removeAll()
+                            QuoteDeck.sharedInstance.tagSet.removeAll()
+                            self.performSegue(withIdentifier: "toAuthBoard", sender: self)
+                            
+                        }else{
+                            UIViewController.removeSpinner(spinner: sv)
+                            
+                            self.showOkAlert(tit: "EmptyLessonsListMessage", msg: "EmptyLessonsListMessage")
+                        }
                     }else{
+                        LanguageViewController.arrayOfChapterIDs.removeAll()
+                        
                         UIViewController.removeSpinner(spinner: sv)
-                        // self.performSegue(withIdentifier: "showChaptersNow", sender: self)
-                        self.performSegue(withIdentifier: "toChaptersBoard", sender: self)
+                        self.performSegue(withIdentifier: "toChaptersBoardFromLVC", sender: self)
                         gitData.chaptersList!.forEach({ (chapter) in
                             print(chapter.name)
-                            QuoteDeck.sharedInstance.quotes.append( Quote(text: chapter.name,tags: [chapter.part]))
+                            LanguageViewController.arrayOfChapterIDs.append(chapter.id)
+                            QuoteDeck.sharedInstance.quotes.append( Quote(text: chapter.part,tags: [chapter.name]))
                         })
+                        QuoteDeck.sharedInstance.quotes.append( Quote(text: "",tags: ["gallery".localizableString(loc: LanguageViewController.buttonName)]))
                         QuoteDeck.sharedInstance.update()
-                        
-                        
                     }
                     
                 } catch let err {
@@ -60,9 +106,26 @@ class LaunchScreenVC: UIViewController {
                 break
                 
             case .failure(let error):
+                
                 UIViewController.removeSpinner(spinner: sv)
-                self.showOkAlert(tit: "EmptyLessonsListMessage", msg: "EmptyLessonsListMessage")
-                print(error.localizedDescription)
+                
+                if((error as NSError).code == -1009){
+                    
+                    let alert = UIAlertController(title: "NetworkAlertTitle".localizableString(loc: LanguageViewController.buttonName), message: "NetworkAlertMessage".localizableString(loc: LanguageViewController.buttonName), preferredStyle: .alert)
+                    //                    let tryAgain = UIAlertAction(title: "tryagain".localizableString(loc: LanguageViewController.buttonName), style: .default, handler: {_ in
+                    //                        self.loadChapters()
+                    //                    })
+                    let cancell = UIAlertAction(title: "Ok".localizableString(loc: LanguageViewController.buttonName), style: .cancel, handler: {_ in
+                        self.noNetworkLabel.isHidden = false
+                        self.tryBtnOutLet.isHidden = false
+                        //                        self.dismiss(animated: true, completion: nil)
+                        //                        UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+                    })
+                    // alert.addAction(tryAgain)
+                    alert.addAction(cancell)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                }
                 break
             }
             
@@ -70,3 +133,4 @@ class LaunchScreenVC: UIViewController {
     }
     
 }
+

@@ -6,6 +6,7 @@
  Copyright © 2019 a. All rights reserved.
  */
 
+
 "SignUpFullNameKey" = "الاسم الكامل";
 
 "SignUpEmailKey" = "البريد الإلكتروني";
@@ -61,4 +62,116 @@
 "VerifyEmailContactUsKey" = "اتصل بنا";
 
 
+"NetworkAlertTitle" = "مشكلة شبكة";
 
+"NetworkAlertMessage" = "تحقق من اتصالك وحاول مرة أخرى لاحقًا";
+
+"WrongCredAlertTitle" = "أوراق غير صحيحة";
+
+"WrongCredAlertMessage" = "تأكد من صحة بريدك الإلكتروني أو كلمة المرور وحاول مرة أخرى";
+
+"EmptyLessonsListTitle" = "لا درس";
+"EmptyLessonsListMessage" = "لا يوجد محتوى لإظهاره لهذا الاختيار";
+
+
+"QRToast" = "لقد اشتركت بنجاح";
+
+"invalidQR" = "رمز QR غير صالح";
+
+"invalidQRMsg" =  "تأكد من قيامك بمسح نفس الرمز الذي تم شراؤه من موقعنا الإلكتروني";
+
+"Cancel" = "إلغاء";
+
+"Error" = "خطأ";
+
+"scanFailedError" = "فشل المسح ، يرجى المحاولة مرة أخرى";
+
+"OK" = "حسنا";
+
+"PrivacyPolicy" = "سياسة خاصة";
+
+"privacyText" = "................";
+
+"RetypePassword" = "أعد إدخال كلمة السر";
+
+"retypePasswordMsg" = "الأحرف التي تم إدخالها لا تتطابق. أدخل نفس كلمة المرور في كلا الحقلين";
+"incorrectPassword" = "كلمة المرور غير صحيحة";
+"incorrectPasswordMsg" = "أدخل كلمة المرور الصحيحة وحاول مرة أخرى";
+
+"InvalidEmail" = "عنوان البريد الإلكتروني غير صالح!";
+
+"unregisteredEmail" = "البريد الإلكتروني المدخل غير مسجل";
+
+"qRActionSheetMessage" = "إختر خيار";
+
+"buyQR" = "شراء رمز الاستجابة السريعة";
+
+"scanQR" = "مسح رمز الاستجابة السريعة";
+
+"subscriptionRequired" = "الاشتراك المطلوبة";
+"subscriptionMsg" = "شراء رمز الاستجابة السريعة والمسح الضوئي للمضي قدما";
+
+"save" = "حفظ";
+"incorrectPassword" =  "كلمة المرور الحالية غير صحيحة";
+"passwordMismatch" = "كلمة المرور الجديدة غير صحيحة / غير متطابقة";
+"passwordMismatchMessage" = "يجب أن يكون طول كلمة المرور ثمانية أحرف على الأقل";
+
+"enterNewName" = "أدخل اسم جديد";
+
+"namePlaceHolder" = "اسم جديد...";
+
+"successfulPasswordUpdation" = "تم تحديث كلمة السر بنجاح";
+
+"close" = "أغلق";
+
+"signOut" = "خروج";
+
+"settings" = "الإعدادات";
+
+"AboutUs" = "معلومات عنا";
+
+"changePassword" = "تغيير كلمة السر";
+
+"currentpassword" = "كلمة المرور الحالي";
+
+"Newpassword"  = "كلمة السر الجديدة";
+
+"Language" = "لغة";
+
+"name" = "اسم";
+
+"edit" = "تصحيح";
+
+"done" = "فعله";
+
+"Sections" = "الأقسام";
+
+"Chapters" = "فصول";
+
+"lessons" = "الدروس";
+
+"gallery" = "معرض صور";
+
+"tryagain" = "حاول مرة أخري";
+
+"verificationRequired" = "التحقق مطلوب!";
+
+"verificationRequiredMsg" = "انتقل إلى بريدك الإلكتروني وتحقق من الحساب";
+
+"images" = "صور";
+
+"byBrands" = "من العلامات التجارية";
+
+"byComposition" = "من التراكيب";
+
+"labTestBtn" = "اختبار مختبر";
+
+"fake&OriginalBtn" = "الأصل وهمية";
+
+"backBtn" = "الى الخلف";
+
+"emailAlreadyExists" = "البريد الإلكتروني الذي تم إدخاله مسجل بالفعل";
+
+"brandCompoNoImages" = "لا توجد صور لإظهارها الآن";
+
+"pictures" = "الصور";

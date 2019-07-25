@@ -1,11 +1,9 @@
 
-
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet var imageView: UIImageView!
- //   @IBOutlet var titleLabel: UILabel!
-
+class PhotoCell : UICollectionViewCell {
+  @IBOutlet weak var imageView: UIImageView!
+    
     private let noImage = UIImage(named: "NoImage")
     
     func setErrorImageIfNeeded(error: Error?) {

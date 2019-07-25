@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  
+//
 //
 //  Created by Habib on 7/1/19.
 //  Copyright © 2019 a. All rights reserved.
@@ -27,19 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     static var shared: AppDelegate!
     
-    // MARK: - Application lifecycle
-//    func height(){
-//        switch(Int(UIScreen.main.bounds.height)){
-//            
-//        }
-//    }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-     
         
-//        UNUserNotificationCenter.current().delegate = self
-//        UNUserNotificationCenter.current().requestAuthorization(options: .alert) { _,_ in }
-//        AppDelegate.shared = self
+        //        window = UIWindow()
+        //        window?.makeKeyAndVisible()
+        //        UNUserNotificationCenter.current().delegate = self
+        //        UNUserNotificationCenter.current().requestAuthorization(options: .alert) { _,_ in }
+        //        AppDelegate.shared = self
         
         return true
     }

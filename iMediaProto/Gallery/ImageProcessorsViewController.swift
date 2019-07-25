@@ -20,8 +20,8 @@ class ImageProcessorsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let vc = AppBuilder.shared.buildBlurViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        //let vc = AppBuilder.shared.buildBlurViewController()
+        //navigationController?.pushViewController(vc, animated: true)
         // Do any additional setup after loading the view.
     }
 

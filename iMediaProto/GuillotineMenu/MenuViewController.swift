@@ -14,21 +14,22 @@ enum menuItems{
 
 class MenuViewController: UIViewController, GuillotineMenu {
     
-    @IBOutlet weak var fifthBtn: UIButton!
-    @IBOutlet weak var fourthBtn: UIButton!
-    @IBOutlet weak var thrdBtn: UIButton!
-    @IBOutlet weak var secBtn: UIButton!
-    @IBOutlet weak var firstBtn: UIButton!
+    @IBOutlet weak var closeBtn: UIButton!
+    @IBOutlet weak var signOutBtn: UIButton!
+    @IBOutlet weak var aboutUs: UIButton!
+    @IBOutlet weak var settingBtn: UIButton!
+    @IBOutlet weak var privacyPolicyBtn: UIButton!
     var dismissButton: UIButton?
     var titleLabel: UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        changeBottomBorder(sender: firstBtn)
-        changeBottomBorder(sender: secBtn)
-        changeBottomBorder(sender: thrdBtn)
-        changeBottomBorder(sender: fourthBtn)
-        //   changeBottomBorder(sender: fifthBtn)
+        renderLanguage()
+        changeBottomBorder(sender: privacyPolicyBtn)
+        //changeBottomBorder(sender: closeBtn)
+        changeBottomBorder(sender: signOutBtn)
+        changeBottomBorder(sender: aboutUs)
+        changeBottomBorder(sender: settingBtn)
         dismissButton = {
             let button = UIButton(frame: .zero)
             button.setImage(UIImage(named: "ic_menu"), for: .normal)
@@ -39,7 +40,6 @@ class MenuViewController: UIViewController, GuillotineMenu {
         titleLabel = {
             let label = UILabel()
             label.numberOfLines = 1;
-            label.text = ""
             label.font = UIFont.boldSystemFont(ofSize: 17)
             label.textColor = UIColor.white
             label.sizeToFit()
@@ -52,25 +52,23 @@ class MenuViewController: UIViewController, GuillotineMenu {
         lineView.backgroundColor = UIColor.white
         sender.addSubview(lineView)
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("Menu: viewWillAppear")
-    }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("Menu: viewDidAppear")
-    }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("Menu: viewWillDisappear")
+    func renderLanguage(){
+        
+        if(LanguageViewController.buttonName ==  "ar" || LanguageViewController.buttonName ==  "fa-IR"){
+            rightToLeftAlignment(Views: self.view.subviews)
+        }
+        closeBtn.setTitle("close".localizableString(loc: LanguageViewController.buttonName), for: .normal)
+        
+        signOutBtn.setTitle("signOut".localizableString(loc: LanguageViewController.buttonName), for: .normal)
+        privacyPolicyBtn.setTitle("PrivacyPolicy".localizableString(loc: LanguageViewController.buttonName), for: .normal)
+        settingBtn.setTitle("settings".localizableString(loc: LanguageViewController.buttonName), for: .normal)
+        
+        aboutUs.setTitle("AboutUs".localizableString(loc: LanguageViewController.buttonName), for: .normal)
     }
+
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("Menu: viewDidDisappear")
-    }
     
     @objc func dismissButtonTapped(_ sender: UIButton) {
         presentingViewController!.dismiss(animated: true, completion: nil)
@@ -80,9 +78,8 @@ class MenuViewController: UIViewController, GuillotineMenu {
         switch (sender.tag){
             
         case 1:
-            let a = UIAlertController(title: "Privacy Policy", message: "policy Contentjkewfgjkaweh,dewhjfg wefgdhjwe,df,wevhjf,yewJCHVE,WJYFVEHWMVFJH,WEDFQEJHVQEWJHFV,Whdfj3fdevwBweFWEMHFVQEJMWHGFGQJEWVFEJWQMDFEJWVD,HVCEWM RXJYEMFEWHMFVJHEWFGJQWY,RFVQEWHFVQWMJQHFVEWJ,YFQWER,MQEYWJFQUYEWFVWEYDVEMYJRFQ4EFJV DFYFREJFV   YGFYFUMFDY3UJDFTUYDUTDMU3DVUKY2DFU2FDTJD32J23YB3UYR3UYRJEWMDFQJYFUQ23JFR2JEDF   2UY3RFKYEFWD    Y23RRFUY23FRJY  MF  U23RJ23U6G2Q3UYJR23U23TYURQTJERFUU32E   HFJF2JRFKU3TFQ32RKUF23KURFQ23URF23URF32TR policy Contentjkewfgjkaweh,dewhjfg wefgdhjwe,df,wevhjf,yewJCHVE,WJYFVEHWMVFJH,WEDFQEJHVQEWJHFV,Whdfj3fdevwBweFWEMHFVQEJMWHGFGQJEWVFEJWQMDFEJWVD,HVCEWM RXJYEMFEWHMFVJHEWFGJQWY,RFVQEWHFVQWMJQHFVEWJ,YFQWER,MQEYWJFQUYEWFVWEYDVEMYJRFQ4EFJV DFYFREJFV   YGFYFUMFDY3UJDFTUYDUTDMU3DVUKY2DFU2FDTJD32J23YB3UYR3UYRJEWMDFQJYFUQ23JFR2JEDF   2UY3RFKYEFWD    Y23RRFUY23FRJY  MF  U23RJ23U6G2Q3UYJR23U23TYURQTJERFUU32E   HFJF2JRFKU3TFQ32RKUF23KURFQ23URF23URF32TR policy Contentjkewfgjkaweh,dewhjfg wefgdhjwe,df,wevhjf,yewJCHVE,WJYFVEHWMVFJH,WEDFQEJHVQEWJHFV,Whdfj3fdevwBweFWEMHFVQEJMWHGFGQJEWVFEJWQMDFEJWVD,HVCEWM RXJYEMFEWHMFVJHEWFGJQWY,RFVQEWHFVQWMJQHFVEWJ,YFQWER,MQEYWJFQUYEWFVWEYDVEMYJRFQ4EFJV DFYFREJFV   YGFYFUMFDY3UJDFTUYDUTDMU3DVUKY2DFU2FDTJD32J23YB3UYR3UYRJEWMDFQJYFUQ23JFR2JEDF   2UY3RFKYEFWD    Y23RRFUY23FRJY  MF  U23RJ23U6G2Q3UYJR23U23TYURQTJERFUU32E   HFJF2JRFKU3TFQ32RKUF23KURFQ23URF23URF32TR policy Contentjkewfgjkaweh,dewhjfg wefgdhjwe,df,wevhjf,yewJCHVE,WJYFVEHWMVFJH,WEDFQEJHVQEWJHFV,Whdfj3fdevwBweFWEMHFVQEJMWHGFGQJEWVFEJWQMDFEJWVD,HVCEWM RXJYEMFEWHMFVJHEWFGJQWY,RFVQEWHFVQWMJQHFVEWJ,YFQWER,MQEYWJFQUYEWFVWEYDVEMYJRFQ4EFJV DFYFREJFV   YGFYFUMFDY3UJDFTUYDUTDMU3DVUKY2DFU2FDTJD32J23YB3UYR3UYRJEWMDFQJYFUQ23JFR2JEDF   2UY3RFKYEFWD    Y23RRFUY23FRJY  MF  U23RJ23U6G2Q3UYJR23U23TYURQTJERFUU32E   HFJF2JRFKU3TFQ32RKUF23KURFQ23URF23URF32TR", preferredStyle: .actionSheet)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            
+            let a = UIAlertController(title: "PrivacyPolicy".localizableString(loc: LanguageViewController.buttonName), message: "privacyText".localizableString(loc: LanguageViewController.buttonName), preferredStyle: .actionSheet)
+            let defaultAction = UIAlertAction(title: "OK".localizableString(loc: LanguageViewController.buttonName), style: .cancel, handler: nil)
             a.addAction(defaultAction)
             self.present(a, animated: true, completion: nil)
             break
@@ -94,11 +91,13 @@ class MenuViewController: UIViewController, GuillotineMenu {
             break
         case 4:
             UserDefaults.standard.set(false, forKey: "ISUSERLOGGEDIN")
+            LanguageViewController.arrayOfChapterIDs.removeAll()
+            QuoteDeck.sharedInstance.quotes.removeAll()
+            QuoteDeck.sharedInstance.tagSet.removeAll()
             performSegue(withIdentifier: "loggingOut", sender: nil)
             break
         default:
             print("nothing")
-            
         }
         self.performSegue(withIdentifier: "bnbn", sender: sender)
     }

@@ -19,7 +19,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var password: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = true
         renderLanguage()
         
         email.delegate = self
@@ -29,20 +29,33 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func signUpPressed(_ sender: UIButton) {
         
-        guard  !password.text!.isEmpty else {return}
-        if password.text != passwordConfirm.text{
-            let alertController = UIAlertController(title: "Retype Password", message: "Characters Entered do not match.Enter exactly the same password in both fields", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        print((password.text!.isEmpty))
+        print((password.text!.count < 7))
+        print((SignUpViewController.isValidEmail(emailID: email.text!)))
+        
+        if((password.text!.isEmpty) || (password.text!.count < 7)){
             
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
+            showOkAlert(tit: "", msg: "passwordMismatchMessage".localizableString(loc: LanguageViewController.buttonName))
+            return
+            
+        }
+        if(!SignUpViewController.isValidEmail(emailID: email.text!)) {
+            
+            showOkAlert(tit: "", msg: "InvalidEmail".localizableString(loc: LanguageViewController.buttonName))
+            return
+            
+        }
+        
+        if password.text != passwordConfirm.text{
+            showOkAlert(tit:  "RetypePassword", msg: "retypePasswordMsg")
             return
         }
         
         
         
         let sv = UIViewController.displaySpinner(onView: self.view)
-        let url = URL(string: networkConstants.baseURL+networkConstants.signup)!//"https://reqres.in/api/login")!
+        let url = URL(string: networkConstants.baseURL+networkConstants.signup)!
         
         let parameters:Parameters = [
             "app_id":"com.wikibolics.com",
@@ -61,15 +74,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             case .success(let json):
                 print(json)
                 do {
-                    self.performSegue(withIdentifier: "verifySegue", sender: self)
+                    
                     let jsonData = try JSONSerialization.data(withJSONObject: json)
                     let decoder = JSONDecoder()
                     let gitData = try decoder.decode(signUpStructure.self, from: jsonData)
                     if(gitData.message != "signup_success"){
                         
-                        print("login unsuccessful reason:\(gitData.message)")
-                        
+                        switch gitData.message{
+                            
+                        case "account_exist_error":
+                            self.showOkAlert(tit: "emailAlreadyExists".localizableString(loc: LanguageViewController.buttonName), msg:"")
+                            print("login unsuccessful reason:\(gitData.message)")
+                            break
+                            
+                            
+                        default:
+                            break
+                        }
                     }else{
+                        self.performSegue(withIdentifier: "verifySegue", sender: self)
                         print(gitData.userEmail!)
                     }
                     
@@ -79,13 +102,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 break
                 
             case .failure:
-                self.showOkAlert(tit: "NetworkAlertTitle", msg: "NetworkAlertMessage")
+                self.showOkAlert(tit: "NetworkAlertTitle".localizableString(loc: LanguageViewController.buttonName), msg: "NetworkAlertMessage".localizableString(loc: LanguageViewController.buttonName))
                 break
             }
         })
         
     }
-    
+    static func isValidEmail(emailID:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: emailID)
+    }
     func renderLanguage(){
         
         if(LanguageViewController.buttonName ==  "ar" || LanguageViewController.buttonName ==  "fa-IR"){
@@ -107,8 +134,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func confirmPassword() {
         guard  !password.text!.isEmpty else {return}
         if password.text != passwordConfirm.text{
-            let alertController = UIAlertController(title: "Password Incorrect", message: "Please re-type password", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            let alertController = UIAlertController(title: "incorrectPassword".localizableString(loc: LanguageViewController.buttonName), message: "incorrectPasswordMsg".localizableString(loc: LanguageViewController.buttonName), preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK".localizableString(loc: LanguageViewController.buttonName), style: .cancel, handler: nil)
             
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
@@ -119,7 +146,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
 }
 
 

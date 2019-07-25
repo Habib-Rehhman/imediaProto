@@ -30,8 +30,8 @@ extension UIViewController{
     }
     
     func showOkAlert(tit: String, msg: String){
-        let alertController = UIAlertController(title: tit.localizableString(loc: LanguageViewController.buttonName), message: msg.localizableString(loc: LanguageViewController.buttonName), preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let alertController = UIAlertController(title: tit.localizableString(loc: LanguageViewController.buttonName),message: msg.localizableString(loc: LanguageViewController.buttonName),preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK".localizableString(loc: LanguageViewController.buttonName), style: .cancel, handler: nil)
         
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
@@ -45,7 +45,13 @@ extension UIViewController{
     //    }
     
     class func displaySpinner(onView : UIView) -> UIView {
-        let spinnerView = UIView.init(frame: onView.bounds)
+        var rect: CGRect!
+        if(onView is UITableView){
+            rect = (onView as! UITableView).bounds
+        }else{
+            rect = onView.bounds
+        }
+        let spinnerView = UIView.init(frame: rect)//onView.bounds)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(style: .whiteLarge)
         ai.color = .black
@@ -88,4 +94,37 @@ extension UIColor {
 }
 
 
-
+extension UITableViewController{
+    // the completion closure is serving no purpose.
+    func presentQR(completion: @escaping (Bool) -> Void){
+        
+        let alertAction = UIAlertController(title: nil, message: "", preferredStyle: .actionSheet)
+        let buy = UIAlertAction(title: "buyQR".localizableString(loc: LanguageViewController.buttonName), style: .default, handler: {_ in
+            
+            if let url = URL(string: "https://www.google.com/"), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:])
+            }
+        })
+        let scan = UIAlertAction(title: "scanQR".localizableString(loc: LanguageViewController.buttonName), style: .default, handler: {_ in
+            self.performSegue(withIdentifier: "scanQRNow", sender: nil)
+            //completion(false)
+        })
+        let cancel = UIAlertAction(title: "Cancel".localizableString(loc: LanguageViewController.buttonName), style: .cancel, handler: nil)
+        alertAction.addAction(buy)
+        alertAction.addAction(scan)
+        alertAction.addAction(cancel)
+        
+        
+        let alert = UIAlertController(title: "subscriptionRequired".localizableString(loc: LanguageViewController.buttonName), message: "subscriptionMsg".localizableString(loc: LanguageViewController.buttonName), preferredStyle: .alert)
+        let continu = UIAlertAction(title: "RecoveryContinueKey".localizableString(loc: LanguageViewController.buttonName), style: .default, handler: {_ in
+            self.present(alertAction, animated: true, completion: nil)
+        })
+        let cancell = UIAlertAction(title: "Cancel".localizableString(loc: LanguageViewController.buttonName), style: .cancel, handler: {_ in
+            // self.navigationController?.popViewController(animated: true)
+        })
+        alert.addAction(continu)
+        alert.addAction(cancell)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+}

@@ -29,6 +29,17 @@ struct signinStructure: Codable {
     }
 }
 
+
+
+struct forgotPassword: Codable{
+    
+    let message: String?
+    
+}
+
+
+
+
 struct signUpStructure: Codable{
     
     let signupStatus: Bool?
@@ -51,16 +62,7 @@ struct change_Password: Codable{
     
     let message: String
 }
-//
-//struct generalResponseHandling {
-//    let isSuccessful: Bool?
-//    let failureReason: String?
-//
-//    init(success: Bool?, failure: String?) {
-//        isSuccessful = success
-//        failureReason = failure
-//    }
-//}
+
 struct chapter: Codable{
     
     let id: String
@@ -98,14 +100,23 @@ struct sublesson: Codable{
     let id: String
     let name: String
 }
-
+struct brands: Codable{
+    
+    let id: String?
+    let name: String
+}
+struct arrayOfBrands: Codable {
+    let message: String?
+    let brandsList: [brands]?
+    let compositionsList: [brands]?
+}
 struct arrayOfSubLessons: Codable{
     let message: String?
     let sublessonsList: [sublesson]?
 }
 struct imagesStruct: Codable{
     
-    let image: URL?
+    let image: String?
     let labTesting: String?
     let fakeOriginal: String?
     

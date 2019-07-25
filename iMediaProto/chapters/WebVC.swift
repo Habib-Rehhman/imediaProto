@@ -10,7 +10,7 @@ import WebKit
 
 class WebVC : UIViewController{
     
-    @IBOutlet weak var imgButton: UIButton!
+    @IBOutlet weak var imgBtn: UIBarButtonItem!
     
     @IBOutlet weak var webV: WKWebView!
     var html: String = ""
@@ -18,10 +18,11 @@ class WebVC : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imgBtn.title =  "images".localizableString(loc: LanguageViewController.buttonName)
+        imgBtn.tintColor = .white
+        imgBtn.setBackgroundImage(#imageLiteral(resourceName: "croped"), for: .normal, barMetrics: .default)
         webV.loadHTMLString(html, baseURL: nil)
     }
-    
-
     
     @IBAction func imagesPressed(_ sender: Any) {
         
