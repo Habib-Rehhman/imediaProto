@@ -11,6 +11,7 @@
 		000E0D2222C4C6300080DFC7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000E0D2122C4C6300080DFC7 /* Extensions.swift */; };
 		001BCF6422C0DEF300419E00 /* PasswordRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001BCF6322C0DEF300419E00 /* PasswordRecovery.swift */; };
 		0023A28622C1F28D007BEB2D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0023A28822C1F28D007BEB2D /* Localizable.strings */; };
+		002CE26D22E9FB520081422E /* serverInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CE26C22E9FB520081422E /* serverInfo.swift */; };
 		002E413522D0A0F6009B4809 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 002E413422D0A0F6009B4809 /* Auth.storyboard */; };
 		002E413722D0A9B5009B4809 /* Chapters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 002E413622D0A9B5009B4809 /* Chapters.storyboard */; };
 		002F29C322D49565000D64CF /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002F29C222D49565000D64CF /* LaunchScreenVC.swift */; };
@@ -56,7 +57,6 @@
 		9D6F920222CF7A3D00DE4242 /* TopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F91FC22CF7A3D00DE4242 /* TopicsViewController.swift */; };
 		9D6F920622CF7D4C00DE4242 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6F920522CF7D4C00DE4242 /* WebKit.framework */; };
 		9D84D5C022D2044A004E0025 /* CredentialsEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D84D5BF22D2044A004E0025 /* CredentialsEdit.swift */; };
-		9D9E3E2022D6373D00EDD50A /* serverInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9E3E1F22D6373D00EDD50A /* serverInfo.swift */; };
 		CFD2EDFF30EE0580E3816510 /* Pods_iMediaProto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B171EC98ED4EF4608FDA3C2 /* Pods_iMediaProto.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +91,7 @@
 		0023A29122C1F91D007BEB2D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		0023A29222C1F91D007BEB2D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0023A29322C24305007BEB2D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		002CE26C22E9FB520081422E /* serverInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = serverInfo.swift; sourceTree = "<group>"; };
 		002E413422D0A0F6009B4809 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		002E413622D0A9B5009B4809 /* Chapters.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chapters.storyboard; sourceTree = "<group>"; };
 		002F29C222D49565000D64CF /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
@@ -142,7 +143,6 @@
 		9D6F91FC22CF7A3D00DE4242 /* TopicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicsViewController.swift; sourceTree = "<group>"; };
 		9D6F920522CF7D4C00DE4242 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9D84D5BF22D2044A004E0025 /* CredentialsEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsEdit.swift; sourceTree = "<group>"; };
-		9D9E3E1F22D6373D00EDD50A /* serverInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serverInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,7 +277,7 @@
 		9D9E3E1E22D636E000EDD50A /* gitIgnore */ = {
 			isa = PBXGroup;
 			children = (
-				9D9E3E1F22D6373D00EDD50A /* serverInfo.swift */,
+				002CE26C22E9FB520081422E /* serverInfo.swift */,
 			);
 			path = gitIgnore;
 			sourceTree = "<group>";
@@ -446,7 +446,6 @@
 				9D6F920022CF7A3D00DE4242 /* SubLessonsVC.swift in Sources */,
 				9D6F91D322CF760300DE4242 /* ImageProcessorsViewController.swift in Sources */,
 				9D6F91FF22CF7A3D00DE4242 /* lessonsViewController.swift in Sources */,
-				9D9E3E2022D6373D00EDD50A /* serverInfo.swift in Sources */,
 				9D6F91EF22CF763200DE4242 /* CollieGalleryCustomAction.swift in Sources */,
 				9D6F91F022CF763200DE4242 /* CollieGalleryViewDelegate.swift in Sources */,
 				9D201E2222C7B7E800074416 /* shared.swift in Sources */,
@@ -458,6 +457,7 @@
 				9D6F91E422CF763200DE4242 /* CollieGalleryPicture.swift in Sources */,
 				001BCF6422C0DEF300419E00 /* PasswordRecovery.swift in Sources */,
 				9D6F91D222CF760300DE4242 /* CollectionViewCell.swift in Sources */,
+				002CE26D22E9FB520081422E /* serverInfo.swift in Sources */,
 				9D6F91EC22CF763200DE4242 /* CollieGallery.swift in Sources */,
 				9D6F91EE22CF763200DE4242 /* CollieGalleryTheme.swift in Sources */,
 				9D6F91E522CF763200DE4242 /* CollieGalleryTransitionType.swift in Sources */,
